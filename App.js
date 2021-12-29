@@ -7,10 +7,12 @@ import Svg, { G, Path } from 'react-native-svg';
 //import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
+import { faVolumeUp } from '@fortawesome/free-solid-svg-icons'
 import * as Speech from 'expo-speech';
 //import HomeScreen from './HomeSreen';
 //import ChoiceScreen from './ChoiceScreen';
-import  Pic from './assets/ph.png';
+import  Pic from './assets/logoSNAIL.png';
 
 //import { ChatFeed, Message } from 'react-chat-ui';
 //import { createStackNavigator } from 'react-navigation-stack';
@@ -140,17 +142,25 @@ function Home ({navigation}) {
 
   return (
     <SafeAreaView style={{flex:1, justifyContent :'center' , alignItems : 'center' , backgroundColor: 'black'}}>
+
   
     <SvgComponent width="30%" height="30%"  color="white"/>
 
+      {/* <SvgComponent width="30%" height="30%"  color="white"/> */}
+
+
+    <Image
+       width={50} height={50}
+        source={Pic}
+      />
     <TouchableOpacity >
     
       <Pressable
-          style={{backgroundColor : 'black' , padding : 20 , width : '100%' , borderRadius: 5 , flexDirection:'row' , justifyContent:'space-between'}}
+          style={{backgroundColor : 'white' , padding : 20 , width : '100%' , borderRadius: 5 , flexDirection:'row' , justifyContent:'space-between'}}
 
           onPress={()=> navigation.navigate('Message')}
       >
-      <Text style={{color : 'white', fontSize : 20}}>Let's go</Text>
+      <Text style={{color : 'black', fontSize : 20}}>Let's go</Text>
       </Pressable>
     
     </TouchableOpacity>
@@ -162,7 +172,11 @@ function Home ({navigation}) {
 
 
 function Messagy () {
+
   const text = "welcome to snail";
+
+  const text = " ok";
+
   const handleVoice = () =>{
     Speech.speak(text);
   }
@@ -174,6 +188,7 @@ function Messagy () {
 
             onPress={()=> handleVoice()}
         >
+          <FontAwesomeIcon icon={ faVolumeUp } color={ 'white' } />
           <Text style={{color : 'white', fontSize : 10}}>Read</Text>
         </Pressable>
       <View style={{
