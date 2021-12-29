@@ -12,7 +12,7 @@ import { faVolumeUp } from '@fortawesome/free-solid-svg-icons'
 import * as Speech from 'expo-speech';
 //import HomeScreen from './HomeSreen';
 //import ChoiceScreen from './ChoiceScreen';
-import  Pic from './assets/logoSNAIL.png';
+import  Pic from './assets/ph.png';
 
 //import { ChatFeed, Message } from 'react-chat-ui';
 //import { createStackNavigator } from 'react-navigation-stack';
@@ -141,11 +141,11 @@ function SvgComponent(props) {
 function Home ({navigation}) {
 
   return (
-    <SafeAreaView style={{flex:1, justifyContent :'center' , alignItems : 'center' , backgroundColor: 'black'}}>
+    <SafeAreaView style={{flex:1, justifyContent :'center' , alignItems : 'center' , backgroundColor: 'white'}}>
 
   
-    <SvgComponent width="30%" height="30%"  color="white"/>
-
+  
+  
       {/* <SvgComponent width="30%" height="30%"  color="white"/> */}
 
 
@@ -175,7 +175,7 @@ function Messagy () {
 
   const text = "welcome to snail";
 
-  const text = " ok";
+  //const text = " ok";
 
   const handleVoice = () =>{
     Speech.speak(text);
