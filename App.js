@@ -139,12 +139,12 @@ function SvgComponent(props) {
 function Home ({navigation}) {
 
   return (
-    <SafeAreaView style={{flex:1, justifyContent :'center' , alignItems : 'center' , backgroundColor: 'white'}}>
+    <SafeAreaView style={{flex:1, justifyContent :'center' , alignItems : 'center' , backgroundColor: 'black'}}>
   
     <SvgComponent width="30%" height="30%"  color="white"/>
 
     <TouchableOpacity >
-    <View style={{margin:20}}>
+    
       <Pressable
           style={{backgroundColor : 'black' , padding : 20 , width : '100%' , borderRadius: 5 , flexDirection:'row' , justifyContent:'space-between'}}
 
@@ -152,7 +152,7 @@ function Home ({navigation}) {
       >
       <Text style={{color : 'white', fontSize : 20}}>Let's go</Text>
       </Pressable>
-    </View>
+    
     </TouchableOpacity>
     </SafeAreaView>
     
@@ -162,7 +162,7 @@ function Home ({navigation}) {
 
 
 function Messagy () {
-  const text = "nigga shut the fuck up";
+  const text = "welcome to snail";
   const handleVoice = () =>{
     Speech.speak(text);
   }
