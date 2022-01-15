@@ -110,7 +110,7 @@ function Home ({navigation}) {
 function Messagy ({navigation}) {
   const [text, setText] = useState('');
   const fetchData= () =>{
-    fetch('https://7538-41-92-5-93.ngrok.io/action', {
+    fetch('https://cdda-197-253-213-46.ngrok.io/action', {
       method: 'GET',
       mode: 'cors',
       headers: {
@@ -184,7 +184,11 @@ function Messagy ({navigation}) {
   }
   });
   useEffect(() => {
-    fetchData();
+    const interval = setInterval(() => {
+      fetchData();
+    }, 2000)
+    return () => clearInterval(interval)
+    
   }, []);
 
   // if (hasPermission === null) {
@@ -221,7 +225,7 @@ function Messagy ({navigation}) {
       <View style={styles.header}>
       <Text style={[styles.title, {
           color: 'white', fontFamily: 'Prompt-Bold'
-      }]}>YOUR TEXT WILL BE DISPLAYED HERE BLABLABLA BLABLA BLABLA foo</Text>
+      }]}>{text}</Text>
   </View>
   <View 
       style={[styles.footer, {
