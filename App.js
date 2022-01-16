@@ -18,7 +18,7 @@ import AppLoading from 'expo-app-loading';
 
 //import HomeScreen from './HomeSreen';
 //import ChoiceScreen from './ChoiceScreen';
-import  Pic from './assets/ph.png';
+import  Pic from './assets/pic.png';
 
 //import { ChatFeed, Message } from 'react-chat-ui';
 //import { createStackNavigator } from 'react-navigation-stack';
@@ -47,7 +47,8 @@ function Home ({navigation}) {
         borderTopLeftRadius: 30,
         borderTopRightRadius: 30,
         paddingVertical: 30,
-        paddingHorizontal: 30
+        paddingHorizontal: 30,
+        justifyContent: "space-evenly",
     },
    
     title: {
@@ -92,6 +93,7 @@ function Home ({navigation}) {
           color: 'black', fontFamily: 'Prompt-Bold',
       }]}>EVERYONE Communicates</Text>
       <View style={styles.button}>
+
       <Pressable
           style={{backgroundColor : 'black' , paddingLeft : 20 ,paddingRight : 20 ,paddingTop : 10 ,paddingBottom : 10  , borderRadius: 30 , flexDirection:'row' , justifyContent:'space-between'}}
 
@@ -110,7 +112,7 @@ function Home ({navigation}) {
 function Messagy ({navigation}) {
   const [text, setText] = useState('');
   const fetchData= () =>{
-    fetch('https://cdda-197-253-213-46.ngrok.io/action', {
+    fetch('http://fc9e-197-253-213-46.ngrok.io/action', {
       method: 'GET',
       mode: 'cors',
       headers: {
@@ -139,7 +141,20 @@ function Messagy ({navigation}) {
   
   const handleVoice = () =>{
     Speech.speak(text);
+    
   }
+
+  const handleStart = () =>{
+   
+    if (btnText == "Start"){
+      setBtnText("Stop");
+    }
+    else {
+      setBtnText("Start");
+    }
+  }
+
+  const [btnText, setBtnText] = useState('Start');
   const [hasPermission, setHasPermission] = useState(null);
   const [type, setType] = useState(Camera.Constants.Type.back);
   const styles = StyleSheet.create({
@@ -163,6 +178,7 @@ function Messagy ({navigation}) {
       borderTopLeftRadius: 30,
       borderTopRightRadius: 30,
       paddingVertical: 30,
+      justifyContent: 'space-evenly',
       paddingHorizontal: 30
   },
   title: {
@@ -189,7 +205,7 @@ function Messagy ({navigation}) {
     }, 2000)
     return () => clearInterval(interval)
     
-  }, []);
+  }, []); 
 
   // if (hasPermission === null) {
   //   return <View />;
@@ -229,22 +245,34 @@ function Messagy ({navigation}) {
   </View>
   <View 
       style={[styles.footer, {
-          backgroundColor: 'black'
+          backgroundColor: 'black',
+          flexDirection: "row"
       }]}
-      
   >
       
-      <View style={styles.button}>
+      <View style={styles.button }>
       <Pressable
           style={{backgroundColor : 'white' , paddingLeft : 20 ,paddingRight : 20 ,paddingTop : 10 ,paddingBottom : 10  , borderRadius: 30 , flexDirection:'row' , justifyContent:'space-between'}}
 
           onPress={()=> handleVoice()}
       >
       <FontAwesomeIcon icon={ faVolumeUp } color={ 'black' } />
-          <Text style={{color : 'black', fontSize : 10, fontFamily: 'Prompt-Regular'}}>Read</Text>
+          <Text style={{color : 'black', fontSize : 17, fontFamily: 'Prompt-Regular' ,  paddingLeft : 10 }}>Read</Text>
       </Pressable>
-      
       </View>
+
+      <View style={styles.button }>
+      <Pressable
+          style={{backgroundColor : 'white' , paddingLeft : 20 ,paddingRight : 20 ,paddingTop : 10 ,paddingBottom : 10  , borderRadius: 30 , flexDirection:'row' , justifyContent:'space-between'}}
+
+          onPress={()=> handleStart()}
+      >
+           
+          <Text style={{color : 'black', fontSize : 17, fontFamily: 'Prompt-Regular' , paddingLeft : 10}}>{btnText}</Text>
+      </Pressable>
+      </View>
+
+     
 
   </View>
     </View>
@@ -331,7 +359,24 @@ function PiCamera () {
       <FontAwesomeIcon icon={ faVolumeUp } color={ 'white' } />
       <Text style={{color : 'white', fontSize : 10}}>Read</Text>
     </Pressable>
+
+    
   </View>
+
+  <View>
+    <Pressable
+        style={{backgroundColor : 'black' , padding : 20 , width : '100%' , borderRadius: 5 , flexDirection:'row' , justifyContent:'space-between'}}
+
+        onPress={()=> handleVoice()}
+    >
+      <FontAwesomeIcon icon={ faVolumeUp } color={ 'white' } />
+      <Text style={{color : 'white', fontSize : 10}}>Read</Text>
+    </Pressable>
+
+    
+  </View>
+
+  
   </View>
 )
   );
