@@ -112,7 +112,7 @@ function Home ({navigation}) {
 function Messagy ({navigation}) {
   const [text, setText] = useState('');
   const fetchData= () =>{
-    fetch('http://fc9e-197-253-213-46.ngrok.io/action', {
+    fetch('http://0d6e-197-253-213-46.ngrok.io/action', {
       method: 'GET',
       mode: 'cors',
       headers: {
@@ -148,6 +148,35 @@ function Messagy ({navigation}) {
    
     if (btnText == "Start"){
       setBtnText("Stop");
+      fetch('http://0d6e-197-253-213-46.ngrok.io/action', {
+        method: 'POST',
+        mode: 'cors',
+        headers: {
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin':'*'
+        },
+        body: JSON.stringify({ order:"run"})
+
+  
+      }).then((response) => {
+        if (response.ok) {
+          response.json().then((data) => {
+            console.log(data);
+          });
+        } else {
+          // Error
+          response.json().then((r) => {
+            console.log(r.error);
+          });
+        }
+        // Repeat fetch at specified interval
+        
+      }).catch((error) => {
+        // Error no response
+        
+        // Repeat fetch at specified interval
+       
+      });
     }
     else {
       setBtnText("Start");
