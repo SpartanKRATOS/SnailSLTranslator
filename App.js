@@ -23,6 +23,7 @@ import  Pic from './assets/pic.png';
 //import { ChatFeed, Message } from 'react-chat-ui';
 //import { createStackNavigator } from 'react-navigation-stack';
 
+// BY Tarik / Salah
 function Home ({navigation}) {
   const {height} = Dimensions.get("screen");
   let [fontsLoaded] = useFonts({
@@ -108,11 +109,11 @@ function Home ({navigation}) {
     }
 }
 
-
+// By Tarik / Salah
 function Messagy ({navigation}) {
   const [text, setText] = useState('');
   const fetchData= () =>{
-    fetch('http://0d6e-197-253-213-46.ngrok.io/action', {
+    fetch('http://2fbd-105-67-134-191.ngrok.io/action', {
       method: 'GET',
       mode: 'cors',
       headers: {
@@ -139,16 +140,18 @@ function Messagy ({navigation}) {
     });
   }
   
+// by tarik
   const handleVoice = () =>{
     Speech.speak(text);
     
   }
 
+  // BY Tarik / Salah 
   const handleStart = () =>{
    
     if (btnText == "Start"){
       setBtnText("Stop");
-      fetch('http://0d6e-197-253-213-46.ngrok.io/action', {
+      fetch('http://2fbd-105-67-134-191.ngrok.io/action', {
         method: 'POST',
         mode: 'cors',
         headers: {
@@ -180,6 +183,35 @@ function Messagy ({navigation}) {
     }
     else {
       setBtnText("Start");
+      fetch('http://2fbd-105-67-134-191.ngrok.io/action/stop', {
+        method: 'POST',
+        mode: 'cors',
+        headers: {
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin':'*'
+        },
+        body: JSON.stringify({ order:"stop"})
+
+  
+      }).then((response) => {
+        if (response.ok) {
+          response.json().then((data) => {
+            console.log(data);
+          });
+        } else {
+          // Error
+          response.json().then((r) => {
+            console.log(r.error);
+          });
+        }
+        // Repeat fetch at specified interval
+        
+      }).catch((error) => {
+        // Error no response
+        
+        // Repeat fetch at specified interval
+       
+      });
     }
   }
 
@@ -228,6 +260,7 @@ function Messagy ({navigation}) {
       fontWeight: 'bold'
   }
   });
+  // By Tarik 
   useEffect(() => {
     const interval = setInterval(() => {
       fetchData();
@@ -308,7 +341,7 @@ function Messagy ({navigation}) {
   );
 
 }
-
+ // by Tarik 
 function PiCamera () {
   const text = " shut up";
   const handleVoice = () =>{
@@ -412,6 +445,7 @@ function PiCamera () {
 
 }
 
+// by Tarik
 const Stack = createNativeStackNavigator();
 
 
