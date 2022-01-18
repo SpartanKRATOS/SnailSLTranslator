@@ -184,13 +184,13 @@ function Messagy ({navigation}) {
     else {
       setBtnText("Start");
       fetch('http://2fbd-105-67-134-191.ngrok.io/action/stop', {
-        method: 'POST',
+        method: 'GET',
         mode: 'cors',
         headers: {
           'Content-Type': 'application/json',
           'Access-Control-Allow-Origin':'*'
         },
-        body: JSON.stringify({ order:"stop"})
+        
 
   
       }).then((response) => {
